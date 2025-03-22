@@ -1,0 +1,66 @@
+name: Save Form Data
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Имя отправителя'
+        required: true
+      company:
+        description: 'Компания'
+        required: true
+      email:
+        description: 'Email отправителя'
+        required: true
+      message:
+        description: 'Текст сообщения'
+        required: true
+
+jobs:
+  save-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+        
+      - name: Save Form Data
+        run: |
+          # Create timestamp
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          
+          # Check if data file exists
+          if [ ! -f data/feedback.json ]; then
+            mkdir -p data
+            echo '{"feedback": []}' > data/feedback.json
+          fi
+          
+          # Get current data
+          CURRENT_DATA=$(cat data/feedback.json)
+          
+          # Prepare input data
+          NEW_ENTRY=$(cat <<EOF
+          {
+            "name": "${{ github.event.inputs.name }}",
+            "company": "${{ github.event.inputs.company }}",
+            "email": "${{ github.event.inputs.email }}",
+            "message": "${{ github.event.inputs.message }}",
+            "date": "$TIMESTAMP"
+          }
+          EOF
+          )
+          
+          # Update the JSON file
+          echo "$CURRENT_DATA" | jq ".feedback = [${NEW_ENTRY}] + .feedback" > data/feedback.json
+          
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'GitHub Actions Bot'
+          git config --global user.email 'actions@github.com'
+          git add data/feedback.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "Add new feedback [automated]"
+          git push
