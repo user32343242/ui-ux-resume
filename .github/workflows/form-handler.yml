@@ -1,0 +1,57 @@
+name: Handle Form Submission
+
+on:
+  repository_dispatch:
+    types: [form_submission]
+
+jobs:
+  process-submission:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+        
+      - name: Process Form Submission
+        run: |
+          # Get current data
+          CURRENT_DATA=$(cat data/feedback.json)
+          
+          # Create temp file with updated data
+          echo '{"feedback": ' > temp.json
+          echo "$CURRENT_DATA" | jq '.feedback' > current_feedback.json
+          echo '[' > new_feedback.json
+          echo '{
+            "name": "${{ github.event.client_payload.name }}",
+            "company": "${{ github.event.client_payload.company }}",
+            "email": "${{ github.event.client_payload.email }}",
+            "message": "${{ github.event.client_payload.message }}",
+            "date": "${{ github.event.client_payload.date }}"
+          }' >> new_feedback.json
+          
+          # Add comma if there are existing feedbacks
+          if [ "$(cat current_feedback.json | jq '. | length')" -gt 0 ]; then
+            echo ',' >> new_feedback.json
+            cat current_feedback.json >> new_feedback.json
+          else
+            cat current_feedback.json >> new_feedback.json
+          fi
+          
+          echo ']' >> new_feedback.json
+          cat new_feedback.json >> temp.json
+          echo '}' >> temp.json
+          
+          # Update the feedback.json file
+          mv temp.json data/feedback.json
+          
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name 'GitHub Actions Bot'
+          git config --global user.email 'actions@github.com'
+          git add data/feedback.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update feedback data [automated]"
+          git push

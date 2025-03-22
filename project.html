@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проект - UI/UX Дизайнер</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .project-container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .project-header h1 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-meta {
+            color: #777;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-image {
+            margin: 2rem 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .project-description {
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .project-section {
+            margin-bottom: 2rem;
+        }
+        
+        .project-section h2 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .next-prev-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .back-to-portfolio {
+            display: block;
+            text-align: center;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="project-container">
+        <div class="project-header">
+            <h1 id="project-title">Загрузка проекта...</h1>
+            <div class="project-meta" id="project-meta"></div>
+        </div>
+        
+        <div class="project-image">
+            <img id="project-main-image" src="assets/images/project1.jpg" alt="Проект">
+        </div>
+        
+        <div class="project-description" id="project-description">
+            <!-- Контент будет загружен динамически -->
+        </div>
+        
+        <div class="project-section">
+            <h2>Проблема и вызовы</h2>
+            <div id="project-challenges">
+                <!-- Контент будет загружен динамически -->
+            </div>
+        </div>
+        
+        <div class="project-section">
+            <h2>Решение</h2>
+            <div id="project-solution">
+                <!-- Контент будет загружен динамически -->
+            </div>
+        </div>
+        
+        <div class="project-section">
+            <h2>Результаты</h2>
+            <div id="project-results">
+                <!-- Контент будет загружен динамически -->
+            </div>
+        </div>
+        
+        <div class="next-prev-links">
+            <a href="#" id="prev-link">&larr; Предыдущий проект</a>
+            <a href="#" id="next-link">Следующий проект &rarr;</a>
+        </div>
+        
+        <a href="index.html#portfolio" class="back-to-portfolio">Вернуться в портфолио</a>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Получаем идентификатор проекта из URL параметров
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectId = urlParams.get('id') || '1';
+            
+            // Здесь бы загружались реальные данные проекта из JSON файла
+            // Для примера используем статичные данные
+            const projects = {
+                '1': {
+                    title: 'Редизайн банковского приложения',
+                    date: 'Март 2023',
+                    client: 'БанкТех',
+                    mainImage: 'assets/images/project1.jpg',
+                    description: 'Полный редизайн мобильного банковского приложения с фокусом на улучшение пользовательского опыта и повышение конверсии основных банковских операций.',
+                    challenges: 'Существующее приложение имело устаревший интерфейс и низкие показатели удовлетворенности пользователей. Основные проблемы включали сложную навигацию, запутанный процесс оплаты и отсутствие персонализации.',
+                    solution: 'Мы провели исследование пользователей, разработали новую информационную архитектуру и создали современный, интуитивно понятный интерфейс. Особое внимание было уделено упрощению наиболее частых операций и внедрению персонализации на основе поведения пользователя.',
+                    results: 'После запуска редизайна удовлетворенность пользователей увеличилась на 42%, время выполнения основных операций сократилось на 30%, а количество успешно завершенных транзакций выросло на 25%.'
+                },
+                '2': {
+                    title: 'Дизайн e-commerce платформы',
+                    date: 'Декабрь 2022',
+                    client: 'МегаМаркет',
+                    mainImage: 'assets/images/project2.jpg',
+                    description: 'Разработка дизайна для новой e-commerce платформы с акцентом на мобильную версию и оптимизацию воронки продаж.',
+                    challenges: 'Клиент нуждался в современной e-commerce платформе, которая бы увеличила конверсию на мобильных устройствах и уменьшила показатель отказов при оформлении заказа.',
+                    solution: 'Мы создали мобильно-ориентированный дизайн с упрощенной навигацией, удобным поиском и интуитивным процессом оформления заказа в три шага. Применили принципы микроинтеракций для улучшения обратной связи с пользователем.',
+                    results: 'Конверсия на мобильных устройствах увеличилась на 65%, показатель отказов при оформлении заказа снизился на 30%, средняя стоимость заказа выросла на 15%.'
+                }
+            };
+            
+            // Загружаем данные проекта на страницу
+            const project = projects[projectId] || projects['1'];
+            
+            document.getElementById('project-title').textContent = project.title;
+            document.getElementById('project-meta').textContent = `${project.date} | Клиент: ${project.client}`;
+            document.getElementById('project-main-image').src = project.mainImage;
+            document.getElementById('project-main-image').alt = project.title;
+            document.getElementById('project-description').textContent = project.description;
+            document.getElementById('project-challenges').textContent = project.challenges;
+            document.getElementById('project-solution').textContent = project.solution;
+            document.getElementById('project-results').textContent = project.results;
+            
+            // Настраиваем навигацию между проектами
+            const nextId = parseInt(projectId) + 1;
+            const prevId = parseInt(projectId) - 1;
+            
+            document.getElementById('next-link').href = projects[nextId] ? `project.html?id=${nextId}` : '#';
+            document.getElementById('prev-link').href = projects[prevId] ? `project.html?id=${prevId}` : '#';
+            
+            if (!projects[nextId]) {
+                document.getElementById('next-link').style.visibility = 'hidden';
+            }
+            
+            if (!projects[prevId]) {
+                document.getElementById('prev-link').style.visibility = 'hidden';
+            }
+        });
+    </script>
+</body>
+</html>
