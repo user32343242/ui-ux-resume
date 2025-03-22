@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume</title>
+    <title>Иван Иванов - UI/UX Дизайнер</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -13,7 +13,7 @@
             <div class="profile">
                 <div class="profile-image">
                     <!-- Заменить на ссылку к вашему изображению -->
-                    <img src="https://img.freepik.com/premium-vector/student-avatar-illustration-user-profile-icon-youth-avatar_118339-4406.jpg" alt="Иван Иванов" id="profile-img">
+                    <img src="assets/images/profile.jpg" alt="Иван Иванов" id="profile-img">
                 </div>
                 <div class="profile-content">
                     <h1>Иван Иванов</h1>
@@ -112,31 +112,31 @@
             <h2 class="section-title">Портфолио</h2>
             <div class="portfolio-grid">
                 <div class="portfolio-item">
-                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/6fd320220355559.67c157139d751.png" alt="Проект 1">
+                    <img src="assets/images/project1.jpg" alt="Проект 1">
                     <div class="portfolio-overlay">
                         <h3>Редизайн банковского приложения</h3>
-                        <a href="https://www.behance.net/gallery/220355559/Modern-Banking-App?tracking_source=search_projects|banking+app+design+modern&l=0">Подробнее</a>
+                        <a href="#">Подробнее</a>
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <img src="https://mir-cdn.behance.net/v1/rendition/project_modules/fs/07f75d221164361.67d000208ff56.gif" alt="Проект 2">
+                    <img src="assets/images/project2.jpg" alt="Проект 2">
                     <div class="portfolio-overlay">
                         <h3>Дизайн e-commerce платформы</h3>
-                        <a href="https://www.behance.net/gallery/221164361/Furniture-Customisation-Web-App-Vero?tracking_source=search_projects|Ecommerce+App+Design&l=12">Подробнее</a>
+                        <a href="#">Подробнее</a>
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <img src="https://i.imgur.com/xfgsCXo.jpeg" alt="Проект 3">
+                    <img src="assets/images/project3.jpg" alt="Проект 3">
                     <div class="portfolio-overlay">
                         <h3>Мобильное приложение для здоровья</h3>
-                        <a href="https://www.behance.net/gallery/187725111/Oscar-Health-Mobile-App-UX-UI-Design">Подробнее</a>
+                        <a href="#">Подробнее</a>
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <img src="https://i.imgur.com/PXo4it3.jpeg" alt="Проект 4">
+                    <img src="assets/images/project4.jpg" alt="Проект 4">
                     <div class="portfolio-overlay">
                         <h3>Веб-сайт для образовательного стартапа</h3>
-                        <a href="https://www.behance.net/gallery/220563213/ETOBAZA-Corporate-site?tracking_source=search_projects|ui+ux+education+web&l=21">Подробнее</a>
+                        <a href="#">Подробнее</a>
                     </div>
                 </div>
             </div>
@@ -148,36 +148,33 @@
             <h2 class="section-title">Связаться со мной</h2>
             <div class="contact-container">
                 <div class="contact-info">
-                    <p><i class="fas fa-envelope"></i> privatetwe7ve@gmail.com</p>
-                    <p><i class="fas fa-phone"></i> +7 (999) 777-75-75</p>
+                    <p><i class="fas fa-envelope"></i> email@example.com</p>
+                    <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
                     <p><i class="fas fa-map-marker-alt"></i> Москва, Россия</p>
                 </div>
-                <form id="feedbackForm" action="https://formsubmit.co/privatetwe7ve@gmail.com" method="POST">
-                    <input type="hidden" name="_next" value="https://user32343242.github.io/uxui-resume/thanks.html">
-                    <input type="hidden" name="_subject" value="Новый отклик на резюме">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_template" value="table">
-                    
-                    <div class="form-group">
-                        <label for="name">Имя</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="company">Компания</label>
-                        <input type="text" id="company" name="company" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Сообщение</label>
-                        <textarea id="message" name="message" rows="4" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" id="submit-btn">Отправить</button>
-                    </div>
-                </form>
+                <div class="contact-form">
+                    <form id="feedbackForm">
+                        <div class="form-group">
+                            <label for="name">Имя</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Компания</label>
+                            <input type="text" id="company" name="company" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Сообщение</label>
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" id="submit-btn">Отправить</button>
+                        </div>
+                        <div class="form-message" id="formMessage"></div>
+                    </form>
                 </div>
             </div>
         </div>
